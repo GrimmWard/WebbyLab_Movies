@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head><meta charset="UTF-8" /><title>Реєстрація</title></head>
+<body>
+<h2>Реєстрація</h2>
+<form id="registerForm">
+    <input type="email" name="email" placeholder="Email" required /><br />
+    <input type="text" name="name" placeholder="Ім'я" required /><br />
+    <input type="password" id="password" name="password" placeholder="Пароль" required /><br />
+    <input type="password" id="passwordConfirm" name="passwordConfirm" placeholder="Підтвердження паролю" required /><br />
+    <button type="submit">Зареєструватися</button>
+</form>
+
+<script>
+    const form = document.getElementById('registerForm');
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const password = form.password.value;
+        const confirmPassword = form.passwordConfirm.value;
+
+        if(password !== confirmPassword) {
+            alert('Паролі не співпадають!');
+            return;
+        }
+
+        const data = {
+            email: form.email.value,
+            name: form.name.value,
+            password,
+            confirmPassword
+        };
+
+        try {
+            const res = await fetch('http://localhost:8000/user/create', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(data),
+            });
+
+            if(res.ok) {
+                alert('Реєстрація успішна!');
+                form.reset();
+                window.location.href = '/user/login';
+            } else {
+                const error = await res.text();
+                alert('Помилка: ' + error);
+            }
+        } catch (err) {
+            alert('Помилка мережі');
+        }
+    });
+</script>
+</body>
+</html>

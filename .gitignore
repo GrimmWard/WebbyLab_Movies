@@ -1,0 +1,48 @@
+# Зависимости
+node_modules/
+package-lock.json
+
+# Файлы среды выполнения
+.env
+.env.local
+.env.*.local
+
+# Логи
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# База данных SQLite
+*.sqlite
+*.sqlite3
+*.db
+
+# IDE
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Системные файлы
+.DS_Store
+Thumbs.db
+
+# Временные файлы
+*.tmp
+*.temp
+.cache/
+
+# Файлы сборки
+dist/
+build/
+*.bundle.js
+
+# Файлы покрытия тестов
+coverage/
+.nyc_output/
+
+# Локальные заметки
+*.todo
+*.notes
